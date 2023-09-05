@@ -7,9 +7,11 @@ app.set("view engine","ejs")        //Dizendo para o express usar o ejs com engi
 app.get("/", (req, res) => {
     let nome = "Luis Eduardo"
     let linguagem = "JS"
+    let exibirMsg = true
     res.render("index",{
         nome:nome,
-        linguagem:linguagem
+        linguagem:linguagem,
+        msg : exibirMsg
     })
 })
 
