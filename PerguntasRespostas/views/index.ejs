@@ -15,14 +15,20 @@
             <%= linguagem %>
     </h2>
 
-
-        <% if(msg){%>
-            <h3>Isso é uma mensagem de erro</h3>
+    <% if(msg){%>
+        <h3>Isso é uma mensagem de erro</h3>
         <%} else {%>
             <h3>Não tem nenhum erro</h3>
             <% } %>
-    
 
+                <% produtos.forEach(produto=> { %>
+                    <div>
+                        <h2>
+                            <%= produto.nome %>
+                        </h2>
+                        <%= produto.preco %>
+                    </div>
+                    <% }); %>
 </body>
 
 </html>
