@@ -15,8 +15,12 @@ app.use(bodyParser.json())  //Permite a leitura de dados enviados via json
 /*ROTAS*/
 app.get("/", (req, res) => {
     let cabecalho = "Guia de perguntas"
-    res.render("index", {
-        cabecalho:cabecalho
+
+    Pergunta.findAll({raw:true}).then(perguntas => {                //raw:true força uma pesquisa simples no banco, e o then recebe essa pesquisa em um elemento
+        res.render("index",{
+            cabecalho:cabecalho,
+            perguntas:perguntas
+        })
     })
 })
 
