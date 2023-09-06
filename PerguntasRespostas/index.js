@@ -13,6 +13,10 @@ app.get("/", (req, res) => {
     })
 })
 
+app.get("/perguntar",(req,res)=>{
+    res.render("perguntar")
+})
+
 app.listen(PORTA, () => {
     console.log(`O servidor está rodando na porta ${PORTA}`)
 })
