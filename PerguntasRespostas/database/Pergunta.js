@@ -13,3 +13,4 @@ const Pergunta = connection.define("perguntas", {
 })
 
 Pergunta.sync({force:false})  //Cria a tabela se ela não foi criada ainda
+module.exports = Pergunta
