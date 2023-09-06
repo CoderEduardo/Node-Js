@@ -16,7 +16,9 @@ app.use(bodyParser.json())  //Permite a leitura de dados enviados via json
 app.get("/", (req, res) => {
     let cabecalho = "Guia de perguntas"
 
-    Pergunta.findAll({raw:true}).then(perguntas => {                //raw:true força uma pesquisa simples no banco, e o then recebe essa pesquisa em um elemento
+    Pergunta.findAll({raw:true,order:[
+        ['id',"DESC"]   //Para ordenar na foroma crescente use "ASC"
+    ]}).then(perguntas => {                //raw:true força uma pesquisa simples no banco, e o then recebe essa pesquisa em um
         res.render("index",{
             cabecalho:cabecalho,
             perguntas:perguntas
