@@ -54,7 +54,11 @@ app.get("/pergunta/:id",(req,res) =>{
         where : {id:id}
     }).then(pergunta => {
         if(pergunta != undefined){
-            res.render("pergunta")
+            let cabecalho = "Perguntas"
+            res.render("pergunta",{
+                cabecalho:cabecalho,
+                pergunta:pergunta
+            })
         }else{
             res.redirect("/")
         }
