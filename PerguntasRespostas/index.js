@@ -5,6 +5,7 @@ const PORTA = 8080
 const connection = require("./database/database")
 connection.authenticate().then(()=> console.log("Conexão feita com o bando de dados")).catch(erro => console.log(`Ocorreu um erro ${erro}`))
 const Pergunta = require('./database/Pergunta')
+const Resposta = require("./database/Resposta")
 const bodyParser = require("body-parser")
 app.set("view engine", "ejs")        //Dizendo para o express usar o ejs com engine
 app.use(express.static("public"))    //Dizendo para o express usar a pasta public como caminho para arquivos estáticos
@@ -48,22 +49,38 @@ app.post("/salvarpergunta",(req,res)=>{
 })
 
 app.get("/pergunta/:id",(req,res) =>{
-
+    let cabecalho = "Responder"
     let id = req.params.id
     Pergunta.findOne({
         where : {id:id}
     }).then(pergunta => {
         if(pergunta != undefined){
-            let cabecalho = "Perguntas"
-            res.render("pergunta",{
-                cabecalho:cabecalho,
-                pergunta:pergunta
+            Resposta.findAll({
+                where: {perguntaId:pergunta.id},
+                order:[['id','DESC']]
+            }).then(respostas=>{
+                res.render("pergunta",{
+                    cabecalho:cabecalho,
+                    pergunta:pergunta,
+                    respostas:respostas
+                })
             })
         }else{
             res.redirect("/")
         }
     })
+})
 
+app.post("/responder", (req,res)=>{
+    let corpo = req.body.corpo
+    let perguntaId = req.body.pergunta
+
+    Resposta.create({
+        corpo:corpo,
+        perguntaId:perguntaId
+    }).then(()=>{
+        res.redirect("/pergunta/" + perguntaId)
+    })
 })
 /*********************************************************************************************************************/
 
