@@ -12,4 +12,7 @@ const Category = connection.define("categories",{
     }
 })
 
+//Rodar apenas uma vez, pois se não ele vai ficar criando várias tabelas
+//Category.sync({force:true})
+
 module.exports = Category

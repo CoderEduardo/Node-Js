@@ -5,6 +5,8 @@ const connection = require("./database/database")
 connection.authenticate().then(()=>{console.log("Bando de dados conctado")}).catch(erro => {console.log(`Ocorreu algum erro: ${erro}`)})
 const categoriesControllers = require('./categories/categoriesControllers')
 const articlesControllers = require("./articles/articlesControllers")
+const Article = require("./articles/Article")
+const Category = require('./categories/Category')
 const PORTA = 8080
 
 app.set('view engine','ejs')
