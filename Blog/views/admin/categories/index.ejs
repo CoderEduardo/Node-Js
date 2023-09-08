@@ -18,10 +18,13 @@
                 </tr>
             </thead>
             <tbody>
-                <tr></tr>
-                <tr></tr>
-                <tr></tr>
-                <tr></tr>
+                <% categories.forEach(categoria => { %>
+                    <tr>
+                        <th><%= categoria.id %></th>
+                        <th><%= categoria.title %></th>
+                        <th><%= categoria.slug %></th>
+                    </tr>
+                <% });  %>
             </tbody>
         </table>
 
