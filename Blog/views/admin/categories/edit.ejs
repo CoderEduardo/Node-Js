@@ -11,9 +11,10 @@
                         <h2>Edição de Categoria</h2>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="/categories/save">
+                        <form method="POST" action="/categories/update">
                             <input type="text" name="title" class="form-control"
                                 placeholder="Defina o título da categoria" value="<%= category.title %>"><br>
+                                <input type="hidden" value="<%= category.id %>" name="id">
                             <button class="btn btn-success">Atualizar</button>
                         </form>
                     </div>
