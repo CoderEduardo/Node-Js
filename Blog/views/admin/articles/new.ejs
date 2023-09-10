@@ -11,14 +11,14 @@
                         <h2>Novo artigo</h2>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="/categories/save">
+                        <form method="POST" action="/articles/save">
                             <input type="text" name="title" class="form-control"
                                 placeholder="Defina o título do Artigo"><br>
                                 <textarea name="body" class="form-control" placeholder="Escreva seu artigo aqui" id="article"></textarea><br>
                                 <label>Categoria:</label>
                                 <select name="category" class="form-control">
                                     <% categories.forEach(category => { %>
-                                        <option value="<% category.id %>"><%= category.title %></option>
+                                        <option value="<%= category.id %>"><%= category.title %></option>
                                     <% });  %>
                                 </select><br>
                             <button class="btn btn-success">Cadastrar</button>

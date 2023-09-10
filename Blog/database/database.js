@@ -5,7 +5,8 @@ const password = "bancodedados1234"
 
 const connection = new Sequelize(database,user,password,{
     host:"localhost",
-    dialect:"mysql"
+    dialect:"mysql",
+    timezone:"-03:00"
 })
 
 module.exports = connection
