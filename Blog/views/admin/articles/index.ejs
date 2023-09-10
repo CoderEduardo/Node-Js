@@ -1,49 +1,60 @@
 <%- include('../../partials/header.ejs') %>
 
-<body>
-    <%- include('../../partials/navbar.ejs') %>
+    <body>
+        <%- include('../../partials/navbar.ejs') %>
 
-    <div class="container">
-        <hr>
-        <h2>Artigos</h2>
-        <hr>
-        <a href="/admin/articles/new" class="btn btn-success">Criar novo Artigo</a>
+            <div class="container">
+                <hr>
+                <h2>Artigos</h2>
+                <hr>
+                <a href="/admin/articles/new" class="btn btn-success">Criar novo Artigo</a>
 
-        <table class="table table-bordered mt-3">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Título</th>
-                    <th>Slug</th>
-                    <th>Categoria</th>
-                    <th>Ações</th>
-                </tr>
-            </thead>
-            <tbody>
-                <% articles.forEach(article => {%>
-                    <td><%= article.id %></td>
-                    <td><%= article.title %></td>
-                    <td><%= article.slug %></td>
-                    <td><%= article.category.id %></td>
-                    <td>
-                        <form action="/articles/delete" method="POST" style="display: inline;" onsubmit="confimarDelecao(this)">
-                            <input type="hidden" name="id" value="<%= article.id %>">
-                            <button class="btn btn-danger">Deletar</button>
-                        </form>
-                    </td>
-                <% });  %>
-            </tbody>
-        </table>
+                <table class="table table-bordered mt-3">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Título</th>
+                            <th>Slug</th>
+                            <th>Categoria</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% articles.forEach(article=> {%>
+                            <tr>
+                                <td>
+                                    <%= article.id %>
+                                </td>
+                                <td>
+                                    <%= article.title %>
+                                </td>
+                                <td>
+                                    <%= article.slug %>
+                                </td>
+                                <td>
+                                    <%= article.category.title %>
+                                </td>
+                                <td>
+                                    <form action="/articles/delete" method="POST" style="display: inline;"
+                                        onsubmit="confimarDelecao(this)">
+                                        <input type="hidden" name="id" value="<%= article.id %>">
+                                        <button class="btn btn-danger">Deletar</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            <% }); %>
+                    </tbody>
+                </table>
 
-    </div>
-</body>
+            </div>
+    </body>
 
-<script>
-    function confimarDelecao(form){
-        event.preventDefault()
-        let decisao = confirm("Você tem certeza que quer deletar esse artigo?")
-        if(decisao){
-            form.submit()
+    <script>
+        function confimarDelecao(form) {
+            event.preventDefault()
+            let decisao = confirm("Você tem certeza que quer deletar esse artigo?")
+            if (decisao) {
+                form.submit()
+            }
         }
-    }
-</script>
+    </script>

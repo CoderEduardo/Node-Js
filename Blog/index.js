@@ -15,7 +15,11 @@ app.use(bodyParser.json())
 app.use(express.static("public"))
 
 app.get("/",(req,res)=>{
-    res.render("index")
+    Article.findAll().then(articles => {
+        res.render("index",{
+            articles:articles
+        })
+    })
 })
 
 app.use("/",categoriesControllers)
