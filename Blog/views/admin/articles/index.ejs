@@ -24,11 +24,26 @@
                     <td><%= article.id %></td>
                     <td><%= article.title %></td>
                     <td><%= article.slug %></td>
-                    <td><%= article.category.title %></td>
-                    <td>Ações</td>
+                    <td><%= article.category.id %></td>
+                    <td>
+                        <form action="/articles/delete" method="POST" style="display: inline;" onsubmit="confimarDelecao(this)">
+                            <input type="hidden" name="id" value="<%= article.id %>">
+                            <button class="btn btn-danger">Deletar</button>
+                        </form>
+                    </td>
                 <% });  %>
             </tbody>
         </table>
 
     </div>
 </body>
+
+<script>
+    function confimarDelecao(form){
+        event.preventDefault()
+        let decisao = confirm("Você tem certeza que quer deletar esse artigo?")
+        if(decisao){
+            form.submit()
+        }
+    }
+</script>
