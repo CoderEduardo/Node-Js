@@ -5,8 +5,10 @@ const connection = require("./database/database")
 connection.authenticate().then(() => { console.log("Bando de dados conectado") }).catch(erro => { console.log(`Ocorreu algum erro: ${erro}`) })
 const categoriesControllers = require('./categories/categoriesControllers')
 const articlesControllers = require("./articles/articlesControllers")
+const userControllers = require("./user/UserController")
 const Article = require("./articles/Article")
 const Category = require('./categories/Category')
+const User = require("./user/User")
 const PORTA = 8080
 
 app.set('view engine', 'ejs')
@@ -58,6 +60,7 @@ app.get("/category/:slug", (req, res) => {
 
 app.use("/", categoriesControllers)
 app.use('/', articlesControllers)
+app.use('/',userControllers)
 
 app.listen(PORTA, () => {
     console.log(`Servidor rodando na porta ${PORTA}`)
