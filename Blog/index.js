@@ -1,6 +1,7 @@
 const express = require("express")
 const app = express()
 const bodyParser = require("body-parser")
+const session = require("express-session")
 const connection = require("./database/database")
 connection.authenticate().then(() => { console.log("Bando de dados conectado") }).catch(erro => { console.log(`Ocorreu algum erro: ${erro}`) })
 const categoriesControllers = require('./categories/categoriesControllers')
@@ -15,6 +16,10 @@ app.set('view engine', 'ejs')
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use(express.static("public"))
+app.use(session({
+    secret:"banana",   //palavra aleatória para servir como verificação
+    cookie:{maxAge:1000*30}
+}))
 
 app.get("/", (req, res) => {
     Article.findAll({ order: [['id', 'DESC']],limit:4 }).then(articles => {
