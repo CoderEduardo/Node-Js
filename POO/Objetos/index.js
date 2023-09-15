@@ -31,6 +31,15 @@ class Filme {
         console.log("Fechado")
     }
 
+    Ficha(){
+        console.log(`
+        Título: ${this.titulo}
+        Ano de laçamento: ${this.ano}
+        Gênero do filme: ${this.genero}
+        Diretor do filme: ${this.diretor}
+        Tempo de duração: ${this.duracao}`)
+    }
+
 }
 
 let vingadores = new Filme()    //Criando um objeto
@@ -40,6 +49,5 @@ let batman = new Filme("Batman",2000,"Ação","Zé da manga","2 horas e 50 minut
 vingadores.Reproduzir() //Acessando métodos
 starWars.Fechar()
 vingadores.titulo = "Vingadores"    //Definindo valores aos atributos
-vingadores.genero = "Ação"
-console.log(`Nome: ${vingadores.titulo}, gênero: ${vingadores.genero}`) //Acessando atributos
-console.log(`Filme: ${batman.titulo}, Ano: ${batman.ano}, Gênero: ${batman.genero}, Diretor: ${batman.diretor}, Duração: ${batman.duracao}`)
+batman.Ficha()
+
