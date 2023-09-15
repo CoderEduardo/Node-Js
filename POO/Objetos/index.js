@@ -23,6 +23,10 @@ class Filme {
         console.log("Avançando")
     }
 
+    Retroceder(){
+        console.log("Retrocedendo")
+    }
+
     Fechar() {
         console.log("Fechado")
     }
@@ -31,4 +35,7 @@ class Filme {
 
 let vingadores = new Filme()    //Criando um objeto
 let starWars = new Filme()
- 
+
+vingadores.Reproduzir() //Acessando métodos
+starWars.Fechar()
+console.log(`Tempo: ${vingadores.duracao}`) //Acessando atributos
