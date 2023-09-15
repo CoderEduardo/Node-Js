@@ -38,4 +38,6 @@ let starWars = new Filme()
 
 vingadores.Reproduzir() //Acessando métodos
 starWars.Fechar()
-console.log(`Tempo: ${vingadores.duracao}`) //Acessando atributos
+vingadores.titulo = "Vingadores"    //Definindo valores aos atributos
+vingadores.genero = "Ação"
+console.log(`Nome: ${vingadores.titulo}, gênero: ${vingadores.genero}`) //Acessando atributos
