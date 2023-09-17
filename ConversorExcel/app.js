@@ -1,4 +1,9 @@
 const Reader = require("./Reader")
 const leitor = new Reader()
 
-leitor.Read("./teste.csv")
+async function main(){
+     let dados = await leitor.Read("./teste.csv")
+     console.log(dados)
+}
+
+main()
