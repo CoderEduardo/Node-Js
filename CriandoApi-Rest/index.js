@@ -35,6 +35,21 @@ app.get("/games", (req, res) => {
     res.json(db.games)
 })
 
+app.get("/game/:id", (req, res) => {
+    let id = parseInt(req.params.id)
+    if (isNaN(id)) {
+        res.sendStatus(400) //Se o valor que for passador não for um número, ele vai retornar esse status code
+    } else {
+        let game = db.games.find(game => game.id == id)
+        if (game != undefined) {
+            res.statusCode = 200
+            res.json(game)
+        } else {
+            res.sendStatus(404)
+        }
+    }
+})
+
 app.listen(PORTA, () => {
     console.log(`API RODANDO`)
 })
