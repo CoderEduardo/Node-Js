@@ -6,14 +6,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Loja de Games</title>
 </head>
-
 <body>
+    <hr>
+    <h4>Lista de games</h4>
+    <ul id="games">
+
+    </ul>
 
 </body>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
-    axios.get("http://localhost:8080/games").then(res => {
-        console.log(res)
+    //Consumindo dados de uma API
+    axios.get("http://localhost:8080/games").then(response => {
+        let games = response.data                                                           //Método capaz de retornar os vlaores para uma variável
+        let list = document.getElementById("games")
+
+        games.forEach(game => {
+            let item = document.createElement("li")                                         //Cria um elmento li 
+            item.innerHTML = `${game.id} - ${game.title}, $R${game.price}`                 //Escreve o elemento dentro do item
+            list.appendChild(item)                                                         //Adiciona um filho ao ul que tem o id games
+        });
     }).catch(erro => {
         console.log(`Ocorreu um erro: ${erro}`)
     })
