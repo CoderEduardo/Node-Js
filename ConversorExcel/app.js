@@ -7,7 +7,7 @@ async function main(){
      let dados = await leitor.Read("./teste.csv")
      let dadosProcessados = Processor.Process(dados)
      let usuarios = new Table(dadosProcessados)
-     console.log(usuarios.rows)
+     console.log(usuarios.RowCount)
 }
 
 main()
