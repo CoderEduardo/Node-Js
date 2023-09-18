@@ -30,4 +30,17 @@ router.post("/game",(req,res)=>{
     }
 })
 
+router.delete("/game/:id",(req,res)=>{
+    let id = req.params.id 
+    if(isNaN(id)){
+        res.sendStatus(404)
+    }else{
+        Game.destroy({
+            where:{id:id}
+        }).then(()=>{
+            res.sendStatus(200)
+        })
+    }
+})
+
 module.exports = router
