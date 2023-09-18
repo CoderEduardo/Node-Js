@@ -14,7 +14,7 @@ router.get("/games", (req, res) => {
 })
 
 router.get("/game/:id", (req, res) => {
-    let id = req.params.id
+    let id = parseInt(req.params.id)
     if (isNaN(id) || id == undefined) {
         res.sendStatus(404)
     } else {
@@ -43,7 +43,7 @@ router.post("/game", (req, res) => {
 })
 
 router.delete("/game/:id", (req, res) => {
-    let id = req.params.id
+    let id = parseInt(req.params.id)
     if (isNaN(id)) {
         res.sendStatus(404)
     } else {
@@ -52,6 +52,26 @@ router.delete("/game/:id", (req, res) => {
         }).then(() => {
             res.sendStatus(200)
         })
+    }
+})
+
+router.put("/game/:id",(req,res)=>{
+    let id = parseInt(req.params.id)
+    if(id == undefined || isNaN(id)){
+        res.sendStatus(404)
+    }else{
+        let {title,year,price} = req.body
+        Game.update({
+            title:title,
+            price:price,
+            year:year
+        },{
+            where:{id:id}
+        }).then(()=>{
+            res.sendStatus(200)
+        }).catch(()=>{
+            res.sendStatus(404)
+        })  
     }
 })
 
