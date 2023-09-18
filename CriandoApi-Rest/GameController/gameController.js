@@ -2,42 +2,54 @@ const express = require("express")
 const router = express.Router()
 const Game = require("./Game")
 
-router.get("/games",(req,res)=>{
-    Game.findAll().then(games=>{
-        if(games.length == 0){
+router.get("/games", (req, res) => {
+    Game.findAll().then(games => {
+        if (games.length == 0) {
             res.send("Não existem jogos registrados ainda")
-        }else{
+        } else {
             res.send(games)
             res.statusCode = 200
         }
     })
 })
 
-router.post("/game",(req,res)=>{
-    let {title,year,price} = req.body
-    if(title == undefined || isNaN(year) || isNaN(price)){
+router.get("/game/:id", (req, res) => {
+    let id = req.params.id
+    if (isNaN(id) || id == undefined) {
+        res.sendStatus(404)
+    } else {
+        Game.findByPk(id).then(game => {
+            res.send(game)
+            res.statusCode = 200
+        })
+    }
+})
+
+router.post("/game", (req, res) => {
+    let { title, year, price } = req.body
+    if (title == undefined || isNaN(year) || isNaN(price)) {
         res.sendStatus(400)
-    }else{
+    } else {
         Game.create({
-            title:title,
-            year:year,
-            price:price
-        }).then(()=>{
+            title: title,
+            year: year,
+            price: price
+        }).then(() => {
             res.sendStatus(200)
-        }).catch(()=>{
+        }).catch(() => {
             res.sendStatus(404)
         })
     }
 })
 
-router.delete("/game/:id",(req,res)=>{
-    let id = req.params.id 
-    if(isNaN(id)){
+router.delete("/game/:id", (req, res) => {
+    let id = req.params.id
+    if (isNaN(id)) {
         res.sendStatus(404)
-    }else{
+    } else {
         Game.destroy({
-            where:{id:id}
-        }).then(()=>{
+            where: { id: id }
+        }).then(() => {
             res.sendStatus(200)
         })
     }
