@@ -66,6 +66,21 @@ app.post("/game", (req, res) => {
     }
 })
 
+app.delete("/game/:id",(req,res)=>{
+    let id = parseInt(req.params.id )
+    if(isNaN(id)){
+        res.sendStatus(404)
+    }else{
+        let index = db.games.findIndex(game=>game.id==id)
+        if(index == -1){        //Se o valor retornado for -1 é porque esse elemento não existe
+            res.sendStatus(404)
+        }else{
+            db.games.splice(index,1)    //Deleta o elemento a partir de uma quantidade indicada
+            res.sendStatus(200) 
+        }
+    }
+})
+
 app.listen(PORTA, () => {
     console.log(`API RODANDO`)
 })
