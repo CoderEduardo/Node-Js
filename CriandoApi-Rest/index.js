@@ -50,6 +50,22 @@ app.get("/game/:id", (req, res) => {
     }
 })
 
+app.post("/game", (req, res) => {
+    let { title, price, year, id } = req.body
+    if (title == undefined || isNaN(price) || isNaN(year) || isNaN(id) ) {
+        res.sendStatus(400)
+    } else {
+        db.games.push({
+            id: id,
+            title: title,
+            price: price,
+            year: year
+        })
+
+        res.sendStatus(200)
+    }
+})
+
 app.listen(PORTA, () => {
     console.log(`API RODANDO`)
 })
