@@ -49,11 +49,20 @@
     axios.get("http://localhost:8080/games").then(response => {
         let games = response.data                                                           //Método capaz de retornar os vlaores para uma variável
         let list = document.getElementById("games")
-
+    
         games.forEach(game => {
-            let item = document.createElement("li")                                         //Cria um elmento li 
-            item.innerHTML = `${game.id} - ${game.title}, $R${game.price}, Ano: ${game.year}`                 //Escreve o elemento dentro do item
-            list.appendChild(item)                                                         //Adiciona um filho ao ul que tem o id games
+            //Cria um elmento li 
+            let item = document.createElement("li")   
+
+            //Insereindo Atributos cunstomizados, para ter um acesso mais rápido as informações
+            item.setAttribute("data-id",game.id)
+            item.setAttribute("data-title",game.title)
+            item.setAttribute("data-price",game.price)
+            item.setAttribute("data-year",game.year)
+
+         
+            item.innerHTML = `${game.id} - ${game.title}, $R${game.price}, Ano: ${game.year}`  //Escreve o elemento dentro do item
+            list.appendChild(item)                                                             //Adiciona um filho ao ul que tem o id games
         });
     }).catch(erro => {
         console.log(`Ocorreu um erro: ${erro}`)
