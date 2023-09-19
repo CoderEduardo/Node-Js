@@ -45,6 +45,10 @@
 
     }
 
+    function deleteGame(){
+        console.log(list)
+    }
+
     //Consumindo dados de uma API
     axios.get("http://localhost:8080/games").then(response => {
         let games = response.data                                                           //Método capaz de retornar os vlaores para uma variável
@@ -62,6 +66,11 @@
 
          
             item.innerHTML = `${game.id} - ${game.title}, $R${game.price}, Ano: ${game.year}`  //Escreve o elemento dentro do item
+
+            let deleteButton = document.createElement("button")
+            deleteButton.innerHTML = "Deletar"
+            item.appendChild(deleteButton)
+
             list.appendChild(item)                                                             //Adiciona um filho ao ul que tem o id games
         });
     }).catch(erro => {
