@@ -6,16 +6,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Loja de Games</title>
 </head>
+
 <body>
     <hr>
     <h4>Lista de games</h4>
-    <ul id="games">
-
-    </ul>
+    <ul id="games"></ul>
+    <hr>
+    <h4>Novo Game</h4>
+    <form>
+        <input type="text" name="title" id="title" placeholder="Título:">
+        <input type="number" name="year" id="year" placeholder="Ano:">
+        <input type="number" name="price" id="price" placeholder="Preço:">
+        <button onclick="crateGame()">Criar</button>
+    </form>
 
 </body>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
+
+    function crateGame(){
+        let title = document.getElementById("title")
+        let year = document.getElementById("year")
+        let price = document.getElementById("price")
+
+        let game = {
+            title:title.value,
+            year:year.value,
+            price:price.value
+        }
+
+        axios.post("http://localhost:8080/game",game).then(response =>{
+            if(response.status == 200){
+                alert("Jogo Cadastrado com sucesso")
+            }
+        }).catch(erro=>{
+            console.log(erro)
+        })
+
+    }
+
     //Consumindo dados de uma API
     axios.get("http://localhost:8080/games").then(response => {
         let games = response.data                                                           //Método capaz de retornar os vlaores para uma variável
@@ -23,11 +52,12 @@
 
         games.forEach(game => {
             let item = document.createElement("li")                                         //Cria um elmento li 
-            item.innerHTML = `${game.id} - ${game.title}, $R${game.price}`                 //Escreve o elemento dentro do item
+            item.innerHTML = `${game.id} - ${game.title}, $R${game.price}, Ano: ${game.year}`                 //Escreve o elemento dentro do item
             list.appendChild(item)                                                         //Adiciona um filho ao ul que tem o id games
         });
     }).catch(erro => {
         console.log(`Ocorreu um erro: ${erro}`)
     })
 </script>
+
 </html>
