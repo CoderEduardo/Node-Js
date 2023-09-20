@@ -3,7 +3,7 @@ const router = express.Router()
 const linkController = require("../controllers/linkController")
 
 router.get("/",(req,res)=>{
-    res.render("index")
+    res.render("index",{error:false,body:{}})
 })
 
 router.get("/:title",linkController.redirect)
