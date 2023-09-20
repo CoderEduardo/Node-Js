@@ -24,10 +24,23 @@ const addLink = async (req, res) => {
 const allLinks = async (req, res) => {
     try {
         let links = await Link.find({})
-        res.render("all",{links})
-    } catch (error){
+        res.render("all", { links })
+    } catch (error) {
         res.send(`Ocorreu um erro ${error}`)
     }
 }
 
-module.exports = { redirect, addLink, allLinks }
+const deleteLink = async (req, res) => {
+    let id = req.params.id
+    if(!id){
+        id=req.body.id
+    }
+    try{
+        await Link.findByIdAndDelete(id)
+        res.redirect("/all")
+    }catch(erro){
+        res.sendStatus(404).res.send(erro)
+    }
+}
+
+module.exports = { redirect, addLink, allLinks, deleteLink }

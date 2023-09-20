@@ -12,4 +12,8 @@ router.get("/:title",linkController.redirect)
 
 router.post("/", linkController.addLink)
 
+router.delete("/:id",linkController.deleteLink)
+
+router.delete("/",linkController.deleteLink)
+
 module.exports = router

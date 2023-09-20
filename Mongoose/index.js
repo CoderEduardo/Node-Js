@@ -9,6 +9,8 @@ const Link = require("./models/Link")
 const linksController = require("./routes/links")
 const ejs = require("ejs")
 app.set("view engine",'ejs')
+const methodOverride = require("method-override")
+app.use(methodOverride('_method'))
 
 app.use("/",linksController)
 
