@@ -2,13 +2,15 @@ const express = require("express")
 const router = express.Router()
 const linkController = require("../controllers/linkController")
 
-router.get("/",(req,res)=>{
+router.get("/add",(req,res)=>{
     res.render("index",{error:false,body:{}})
 })
 
-router.get("/all",linkController.allLinks)
+router.get("/",linkController.allLinks)
 
 router.get("/:title",linkController.redirect)
+
+
 
 router.post("/", linkController.addLink)
 
