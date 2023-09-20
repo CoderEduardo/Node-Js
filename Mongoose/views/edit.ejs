@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de links</title>
+</head>
+<body>
+    <h1>Editar seu Link</h1>
+    <form action="/edit/<%= body.id %>" method="POST">
+        <input type="text" name="title" placeholder="Título" value="<%= body.title %>" required>
+        <input type="text" name="description" placeholder="Descrição" value="<%= body.description %>">
+        <input type="text" name="url" placeholder="url" value="<%= body.url %>" required>
+        <button>Salvar</button>
+    </form>
+</body>
+</html>
