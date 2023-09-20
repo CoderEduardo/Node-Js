@@ -2,6 +2,9 @@ const express = require("express")
 const app = express()
 const PORTA = 8080
 const mongoose = require("mongoose")
+const bodyParser = require("body-parser")
+app.use(bodyParser.urlencoded({extended:true}))
+app.use(bodyParser.json())
 const Link = require("./models/Link")
 const linksController = require("./routes/links")
 
