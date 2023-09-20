@@ -7,6 +7,8 @@ app.use(bodyParser.urlencoded({extended:true}))
 app.use(bodyParser.json())
 const Link = require("./models/Link")
 const linksController = require("./routes/links")
+const ejs = require("ejs")
+app.set("view engine",'ejs')
 
 app.use("/",linksController)
 
