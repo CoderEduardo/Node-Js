@@ -6,6 +6,8 @@ router.get("/",(req,res)=>{
     res.render("index",{error:false,body:{}})
 })
 
+router.get("/all",linkController.allLinks)
+
 router.get("/:title",linkController.redirect)
 
 router.post("/", linkController.addLink)

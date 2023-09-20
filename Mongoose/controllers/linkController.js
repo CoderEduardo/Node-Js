@@ -17,8 +17,17 @@ const addLink = async (req, res) => {
         let doc = await link.save()
         res.send("Link Adicionado com sucesso")
     } catch (error) {
-        res.render("index",{error,body:req.body})
+        res.render("index", { error, body: req.body })
     }
 }
 
-module.exports = { redirect, addLink }
+const allLinks = async (req, res) => {
+    try {
+        let links = await Link.find({})
+        res.render("index",{links})
+    } catch (error){
+        res.send(`Ocorreu um erro ${error}`)
+    }
+}
+
+module.exports = { redirect, addLink, allLinks }
